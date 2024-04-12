@@ -4,18 +4,23 @@ function DropDown() {
       <div className="flex justify-end">
         <button className="text-white text-[22px] pr-4">x</button>
       </div>
-      <div className="pt-5 flex justify-center">
-        <div className="pr-[78px]">
+      <div className="pt-5 flex justify-between p-4">
+        <div className="">
           <input
             type="text"
             placeholder="🔍︎ search location"
-            className=" w-[130%] text-center border border-x-zinc-50 p-[7px]"
+            className="bg-primary w-[130%] outline-none text-center border border-[#E7E7EB] p-[7px]"
           />
         </div>
 
-        <button className="bg-blue-700 text-white p-[8px]">Search</button>
+        <button className="bg-[#3C47E9] text-[#E7E7EB] p-[8px]">Search</button>
       </div>
-      <button className="border w-[90%] h-[50px]">London</button>
+      <div className="p-4">
+        <input
+          className="bg-primary outline-none border w-[100%] h-[55px] border-[#E7E7EB]"
+          type="text"
+        />
+      </div>
     </div>
   );
 }
