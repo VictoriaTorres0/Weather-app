@@ -21,7 +21,8 @@ function DropDown() {
           className="bg-primary outline-none border w-[100%] h-[55px] border-[#E7E7EB]"
           type="text"
         >
-          London <SlArrowRight color="#616475" />
+          <SlArrowRight color="#616475" className="w-[12px]" />
+          <p>London</p>
         </button>
       </div>
     </div>
