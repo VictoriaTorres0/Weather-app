@@ -1,3 +1,4 @@
+import { SlArrowRight } from "react-icons/sl";
 function DropDown() {
   return (
     <div className="DropDown-container">
@@ -16,10 +17,12 @@ function DropDown() {
         <button className="bg-[#3C47E9] text-[#E7E7EB] p-[8px]">Search</button>
       </div>
       <div className="p-4">
-        <input
+        <button
           className="bg-primary outline-none border w-[100%] h-[55px] border-[#E7E7EB]"
           type="text"
-        />
+        >
+          London <SlArrowRight color="#616475" />
+        </button>
       </div>
     </div>
   );
