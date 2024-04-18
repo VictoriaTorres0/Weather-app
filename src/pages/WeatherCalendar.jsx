@@ -1,4 +1,4 @@
-function WeatherCalendar() {
+function WeatherCalendar({ data }) {
   return (
     <div className="bg-[#100E1D] justify-center grid grid-rows-3 grid-flow-col gap-4 pt-20 pb-20">
       <div className="bg-[#1E213A] w-[120px] h-[177px]">
