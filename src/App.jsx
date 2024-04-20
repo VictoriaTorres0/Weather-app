@@ -2,10 +2,11 @@ import "./App.css";
 import DropDown from "./pages/DropDown.jsx";
 import SearchPlaces from "./pages/SearchPlaces.jsx";
 import WeatherCalendar from "./pages/WeatherCalendar.jsx";
+import TodayHighlightsSection from "./pages/TodayHighlightsSection.jsx";
 import { useState } from "react";
 
 function App() {
-  const [data, setData] = useState({
+  const [data] = useState({
     coord: {
       lon: -64.1811,
       lat: -31.4135,
@@ -49,15 +50,26 @@ function App() {
     cod: 200,
   });
 
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const pedirDatos = (nombre) => {
     console.log("pidiendo datos de ", nombre);
   };
 
   return (
     <div>
-      <DropDown pedirdatos={pedirDatos} />
-      <SearchPlaces data={data} />
+      {showModal && <DropDown pedirdatos={pedirDatos} onClose={closeModal} />}
+      <SearchPlaces data={data} openModal={openModal} />
       <WeatherCalendar />
+      <TodayHighlightsSection />
     </div>
   );
 }

@@ -3,23 +3,12 @@ import "../pages/SearchPlaces.css";
 import { FaLocationDot } from "react-icons/fa6";
 import DropDown from "./DropDown.jsx";
 import { useState } from "react";
-function SearchPlaces({ data }) {
-  const [showModal, setShowModal] = useState(false);
-  const openModal = () => {
-    setShowModal(true);
-  };
-  const closeModal = () => {
-    setShowModal(false);
-  };
+
+function SearchPlaces({ data, openModal }) {
   return (
     <div className="relative">
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-          <DropDown onClose={closeModal} />
-        </div>
-      )}
       <div className="Container-SearchPlaces h-screen">
-        <div className="flex justify-between px-3">
+        <div className="flex justify-between px-3 pt-5">
           <button
             onClick={openModal}
             className="text-[#E7E7EB] bg-[#6E707A] p-3"
