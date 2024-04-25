@@ -9,7 +9,7 @@ export default function DropDown({ onClose, pedirdatos }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-primary z-50 h-screen">
+    <div className="sm:fixed inset-0 bg-primary z-50 h-screen">
       <div className="flex justify-end pt-4">
         <button
           onClick={onClose}
