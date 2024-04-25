@@ -67,9 +67,19 @@ function App() {
   return (
     <div>
       {showModal && <DropDown pedirdatos={pedirDatos} onClose={closeModal} />}
-      <SearchPlaces data={data} openModal={openModal} />
-      <WeatherCalendar />
-      <TodayHighlightsSection />
+
+      <div className="md:flex md:justify-between">
+        <SearchPlaces data={data} openModal={openModal} />
+        <div>
+          <WeatherCalendar />
+          <TodayHighlightsSection
+            visibility={data.visibility}
+            humidity={data.main.humidity}
+            wind={data.wind}
+            pressure={data.main.pressure}
+          />
+        </div>
+      </div>
     </div>
   );
 }
