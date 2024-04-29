@@ -2,11 +2,11 @@ import { BsFillCursorFill } from "react-icons/bs";
 
 function TodayHighlightsSection({ visibility, humidity, wind, pressure }) {
   return (
-    <div className="bg-secondary">
+    <div>
       <h2 className="pb-8 text-start pl-4 text-[24px] font-semibold text-[#E7E7EB] md:text-[18px] lg:text-[23px]">
         Today’s Hightlights
       </h2>
-      <div className="pb-8  grid-rows-4 justify-center items-center gap-4 grid">
+      <div className="pb-8 grid justify-center items-center gap-4 lg:grid-rows-2 lg:grid-cols-2 place-items-center max-w-[1200px] mx-auto">
         <div className="bg-primary w-[340px] h-[200px] flex flex-col justify-evenly">
           <p className="text-[#E7E7EB]">Wind status</p>
           <div className="flex justify-center">
