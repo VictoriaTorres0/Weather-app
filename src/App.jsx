@@ -78,7 +78,7 @@ function App() {
 
   if (Object.keys(data).length === 0) return;
   return (
-    <div>
+    <div className="font-raleway">
       {showModal && (
         <DropDown
           pedirdatos={pedirDatos}

@@ -7,6 +7,9 @@ export default {
         primary: "#1d2039",
         secondary: "#100E1D",
       },
+      fontFamily: {
+        raleway: ["Raleway"],
+      },
     },
   },
   plugins: [],
