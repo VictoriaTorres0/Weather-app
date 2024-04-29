@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 function SearchPlaces({ data, openModal }) {
   return (
-    <div className="relative md:w-[250px] lg:w-[100%] max-w-[600px]">
+    <div className="relative md:w-[250px] lg:w-[100%] max-w-[380px]">
       <div className="Container-SearchPlaces h-screen">
         <div className="flex justify-between px-3 pt-5">
           <motion.button
@@ -18,7 +18,7 @@ function SearchPlaces({ data, openModal }) {
           </motion.button>
           <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-8 rounded-full p-1 md:p-[3px] md:size-6 lg:size-8" />
         </div>
-        <div className="flex justify-center items-center pt-12">
+        <div className="flex justify-center items-center pt-12 ">
           <motion.img className="w-[70%]" src="/src/images/rain.png" alt="" />
         </div>
         <div className="flex justify-center text-center w-[100%]">

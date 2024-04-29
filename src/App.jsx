@@ -88,7 +88,7 @@ function App() {
         />
       )}
 
-      <div className="md:flex md:justify-between">
+      <div className="md:flex md:justify-between ">
         <SearchPlaces data={data} openModal={openModal} />
         <div className="grow bg-secondary">
           <WeatherCalendar data={data} />
