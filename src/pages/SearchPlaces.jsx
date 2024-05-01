@@ -16,16 +16,37 @@ function SearchPlaces({ data, openModal }) {
           >
             Search for places
           </motion.button>
-          <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-8 rounded-full p-1 md:p-[3px] md:size-6 lg:size-8" />
+          <motion.button
+            whileHover={{ scale: 1.2 }}
+            onHoverStart={(e) => {}}
+            onHoverEnd={(e) => {}}
+          >
+            <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-8 rounded-full p-1 md:p-[3px] md:size-6 lg:size-8" />
+          </motion.button>
         </div>
         <div className="flex justify-center items-center pt-12 ">
-          <motion.img className="w-[70%]" src="/src/images/rain.png" alt="" />
+          <motion.img
+            className="w-[70%]"
+            src="/src/images/rain.png"
+            alt=""
+            animate={{
+              y: [1, 10, 1],
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "linear",
+              },
+            }}
+          />
         </div>
         <div className="flex justify-center text-center w-[100%]">
-          <p className="text-[100px] text-[#E7E7EB] md:text-[60px] lg:text-[80px]">
+          <p className="text-[100px]  font-semibold text-[#E7E7EB] md:text-[60px] lg:text-[90px]">
             {data.main.temp}
           </p>
-          <p className="text-[80px] text-[#e7e7eb83] md:text-[50px]">°c</p>
+          <p className="text-[80px] text-[#e7e7eb83] md:text-[50px] pt-12">
+            °c
+          </p>
         </div>
         <div className="pb-[50px] pt-[40px] ">
           <p className="text-[#e7e7eb83] text-[50px] text-center md:text-[25px] lg:text-[40px]">
