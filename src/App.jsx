@@ -5,8 +5,9 @@ import WeatherCalendar from "./pages/WeatherCalendar.jsx";
 import TodayHighlightsSection from "./pages/TodayHighlightsSection.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
-function App() {
+function App({ text }) {
   const [data, setData] = useState({
     coord: {
       lon: -64.1811,
@@ -92,12 +93,27 @@ function App() {
         <SearchPlaces data={data} openModal={openModal} />
         <div className="grow bg-secondary">
           <WeatherCalendar data={data} />
-          <TodayHighlightsSection
-            visibility={data.visibility}
-            humidity={data.main.humidity}
-            wind={data.wind}
-            pressure={data.main.pressure}
-          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="pb-8 grid justify-center items-center gap-4 lg:grid-rows-2 lg:grid-cols-2 place-items-center max-w-[745px] mx-auto"
+          >
+            <TodayHighlightsSection
+              visibility={data.visibility}
+              humidity={data.main.humidity}
+              wind={data.wind}
+              pressure={data.main.pressure}
+            />
+            <TodayHighlightsSection title={"dasd"} value="7" unit={"%"}>
+              <div>
+                <span>Icono acá</span>
+                <span>SWS</span>
+              </div>
+            </TodayHighlightsSection>
+            <TodayHighlightsSection title={"hooa"} value="84" unit={"mb"} />
+            <TodayHighlightsSection title="dasd" value="6,4" unit={"$"} />
+          </motion.div>
         </div>
       </div>
     </div>
