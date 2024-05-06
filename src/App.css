@@ -4,3 +4,7 @@
   padding: 0;
   text-align: center;
 }
+
+.botonSeleccionado {
+  background-color: #6f757c;
+}
