@@ -1,27 +1,24 @@
 import { SlArrowRight } from "react-icons/sl";
 import { RxCross2 } from "react-icons/rx";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function DropDown({
   onClose,
   pedirdatos,
   historial,
   setHistorial,
+  dataUbication,
+  setDataUbication,
 }) {
-  // DATAUBICACION ES LO QUE SE ESCRIBE EN EL INPUT
-  const [dataUbication, setDataUbication] = useState("");
-
   const handleChange = (e) => {
     setDataUbication(e.target.value);
   };
 
-  console.log(historial);
   return (
     <motion.div
       initial={{ width: "200px" }}
       animate={{ width: "auto" }}
-      className="sm:fixed inset-0 origin-left bg-primary z-50 h-screen max-w-[600px]"
+      className="sticky md:fixed h-screen inset-0 origin-left bg-primary z-50 max-w-[600px] lg:w-[100%] lg:max-w-[459px]"
     >
       <button
         onClick={onClose}
@@ -29,7 +26,7 @@ export default function DropDown({
       >
         <RxCross2 />
       </button>
-      <div className="pt-5 flex justify-between p-4">
+      <div className="pt-5 flex justify-between p-4 gap-3">
         <motion.input
           initial={{ opacity: 0.6 }}
           whileTap={{ scale: 0.9 }}
