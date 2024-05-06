@@ -2,32 +2,50 @@ import { MdMyLocation } from "react-icons/md";
 import "../pages/SearchPlaces.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { format } from "date-fns";
+import { WeatherIcons } from "../consts/weather-icons";
+import { useEffect } from "react";
 
-function SearchPlaces({ data, openModal }) {
+function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          pedirDatos("", position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.log("eror", error.message);
+        }
+      );
+    } else {
+      console.log("error");
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
-    <div className="relative md:w-[250px] lg:w-[100%] max-w-[380px]">
-      <div className="Container-SearchPlaces h-screen">
+    <div className="relative h-[84vh]  lg:w-[100%] lg:max-w-[459px]">
+      <div className="Container-SearchPlaces ">
         <div className="flex justify-between px-3 pt-5">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={openModal}
-            className="text-[#E7E7EB] bg-[#6E707A] p-3 md:p-1 md:text-[13px] lg:p-2 lg:text-[15px]"
+            className="text-[#E7E7EB] bg-[#6E707A] p-3   lg:p-2 lg:text-[18px]"
           >
             Search for places
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.2 }}
-            onHoverStart={(e) => {}}
-            onHoverEnd={(e) => {}}
-          >
-            <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-8 rounded-full p-1 md:p-[3px] md:size-6 lg:size-8" />
+          <motion.button whileHover={{ scale: 1.2 }} onClick={getLocation}>
+            <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-10 rounded-full p-1  lg:size-10 lg:p-[5px]" />
           </motion.button>
         </div>
         <div className="flex justify-center items-center pt-12 ">
           <motion.img
-            className="w-[70%]"
-            src="/src/images/rain.png"
+            className="w-[150px] h-[174px] lg:w-[202px] lg:h-[234px] lg:pb-[20px]"
+            src={WeatherIcons[data.weather[0].icon.substring(0, 2)]}
             alt=""
             animate={{
               y: [1, 10, 1],
@@ -40,23 +58,27 @@ function SearchPlaces({ data, openModal }) {
             }}
           />
         </div>
-        <div className="flex justify-center text-center w-[100%]">
-          <p className="text-[100px]  font-semibold text-[#E7E7EB] md:text-[60px] lg:text-[90px]">
-            {data.main.temp}
+        <div className="flex justify-center text-center w-[100%] lg:py-5">
+          <p className="text-[144px] pt-10 font-semibold text-[#E7E7EB]  lg:text-[144px]">
+            {Math.floor(data.main.temp)}
           </p>
-          <p className="text-[80px] text-[#e7e7eb83] md:text-[50px] pt-12">
-            °c
+          <p className="text-[130px] pt-36 text-[#e7e7eb83] lg:text-[60px]">
+            °{unidad === "metric" ? "c" : "f"}
           </p>
         </div>
-        <div className="pb-[50px] pt-[40px] ">
-          <p className="text-[#e7e7eb83] text-[50px] text-center md:text-[25px] lg:text-[40px]">
+        <div className=" pb-[70px] pt-[10px] lg:pb-[70px] lg:pt-[80px] ">
+          <p className="text-[#e7e7eb83] text-[36px] text-center  lg:text-[36px]">
             {data.weather[0].description}
           </p>
         </div>
-        <p className="text-[#88869D] lg:text-[19px]">Today . </p>
+        <p className="text-[#88869D] pb-5 text-[18px] lg:pb-[30px]">
+          Today . {format(new Date(), "EEE, d MMM")}
+        </p>
         <div className="flex justify-center text-center gap-2">
-          <FaLocationDot className="text-[#88869D]" />
-          <p className="text-[#88869D] lg:text-[17px]">{data.name}</p>
+          <FaLocationDot className="text-[#88869D]  lg:w-[25px] lg:text-[24px]" />
+          <p className="text-[#88869D] font-semibold text-[18px]">
+            {data.name}
+          </p>
         </div>
       </div>
     </div>
