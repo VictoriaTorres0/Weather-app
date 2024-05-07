@@ -83,7 +83,7 @@ function App() {
           pedirDatos={pedirDatos}
         />
         <div className="grow bg-secondary">
-          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[838px]">
+          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[820px]">
             <div>
               <button
                 onClick={() => setBotonActivo("metric")}
@@ -122,9 +122,12 @@ function App() {
               />
             ))}
           </div>
-          <h2 className="text-[24px] font-semibold text-[#E7E7EB] pl-3 lg:pl-10 pb-5">
-            Today’s Hightlights
-          </h2>
+          <div className="max-w-[745px] lg:flex justify-center lg:pl-[270px] ">
+            <h2 className="text-[24px] text-start font-semibold text-[#E7E7EB] pl-3  pb-5">
+              Today’s Hightlights
+            </h2>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -176,13 +179,13 @@ function App() {
             />
           </motion.div>
           <h2 className="text-[#A09FB1] text-[14px] font-bold">
-            Created by
+            Created by&nbsp;
             <a
               href="https://www.linkedin.com/in/victoria-torres-396251287/"
               target="_blank"
               className="underline font-extrabold"
             >
-              Victoria Torres
+              Victoria Torres&nbsp;
             </a>
             - devChallenges.io
           </h2>

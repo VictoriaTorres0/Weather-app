@@ -27,14 +27,14 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
   }, []);
 
   return (
-    <div className="relative h-[84vh]  lg:w-[100%] lg:max-w-[459px]">
-      <div className="Container-SearchPlaces ">
-        <div className="flex justify-between px-3 pt-5">
+    <div className="Container-SearchPlaces relative h-[84vh]  lg:w-[100%] lg:max-w-[459px]">
+      <div>
+        <div className="flex justify-between px-3 pt-5 ">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={openModal}
-            className="text-[#E7E7EB] bg-[#6E707A] p-3   lg:p-2 lg:text-[18px]"
+            className="text-[#E7E7EB] opacity-100 bg-[#6E707A] p-3   lg:p-2 lg:text-[18px]"
           >
             Search for places
           </motion.button>
@@ -42,9 +42,9 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
             <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-10 rounded-full p-1  lg:size-10 lg:p-[5px]" />
           </motion.button>
         </div>
-        <div className="flex justify-center items-center pt-12 ">
+        <div className="flex justify-center lg:justify-start lg:pl-[80px] items-center pt-12 ">
           <motion.img
-            className="w-[150px] h-[174px] lg:w-[202px] lg:h-[234px] lg:pb-[20px]"
+            className=" w-[150px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
             src={WeatherIcons[data.weather[0].icon.substring(0, 2)]}
             alt=""
             animate={{
@@ -62,7 +62,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
           <p className="text-[144px] pt-10 font-semibold text-[#E7E7EB]  lg:text-[144px]">
             {Math.floor(data.main.temp)}
           </p>
-          <p className="text-[130px] pt-36 text-[#e7e7eb83] lg:text-[60px]">
+          <p className="text-[130px] pt-32 text-[#e7e7eb83] lg:text-[60px]">
             °{unidad === "metric" ? "c" : "f"}
           </p>
         </div>
