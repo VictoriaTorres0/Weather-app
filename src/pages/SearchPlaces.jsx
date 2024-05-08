@@ -44,7 +44,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
         </div>
         <div className="flex justify-center lg:justify-start lg:pl-[80px] items-center pt-12 ">
           <motion.img
-            className=" w-[150px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
+            className=" w-[180px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
             src={WeatherIcons[data.weather[0].icon.substring(0, 2)]}
             alt=""
             animate={{
@@ -62,7 +62,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
           <p className="text-[144px] pt-10 font-semibold text-[#E7E7EB]  lg:text-[144px]">
             {Math.floor(data.main.temp)}
           </p>
-          <p className="text-[130px] pt-32 text-[#e7e7eb83] lg:text-[60px]">
+          <p className="text-[90px] pt-28 text-[#e7e7eb83] lg:text-[80px]">
             °{unidad === "metric" ? "c" : "f"}
           </p>
         </div>

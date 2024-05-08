@@ -110,7 +110,6 @@ function App() {
             </div>
           </div>
           <div className="flex flex-wrap justify-center gap-5 py-8">
-            {/* Nueva forma con map. Solo se puede hacer si tenés un array de elementos */}
             {week.map((datos, key) => (
               <WeatherCalendar
                 key={key}
@@ -122,12 +121,11 @@ function App() {
               />
             ))}
           </div>
-          <div className="max-w-[745px] lg:flex justify-center lg:pl-[270px] ">
-            <h2 className="text-[24px] text-start font-semibold text-[#E7E7EB] pl-3  pb-5">
+          <div className="">
+            <h2 className="text-[24px] text-start font-semibold text-[#E7E7EB] pl-3 lg:pl-16 pb-5">
               Today’s Hightlights
             </h2>
           </div>
-
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
