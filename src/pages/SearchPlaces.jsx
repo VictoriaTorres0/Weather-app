@@ -6,12 +6,16 @@ import { format } from "date-fns";
 import { WeatherIcons } from "../consts/weather-icons";
 import { useEffect } from "react";
 
-function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
+function SearchPlaces({ data, openModal, unidad, requestingData }) {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          pedirDatos("", position.coords.latitude, position.coords.longitude);
+          requestingData(
+            "",
+            position.coords.latitude,
+            position.coords.longitude
+          );
         },
         (error) => {
           console.log("eror", error.message);
@@ -19,6 +23,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
       );
     } else {
       console.log("error");
+      // acá falta toast
     }
   };
 
@@ -45,7 +50,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
         <div className="flex justify-center lg:justify-start lg:pl-[80px] items-center pt-12 ">
           <motion.img
             className=" w-[180px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
-            src={WeatherIcons[data.weather[0].icon.substring(0, 2)]}
+            src={WeatherIcons[data?.weather?.[0]?.icon?.substring(0, 2) || ""]}
             alt=""
             animate={{
               y: [1, 10, 1],
@@ -60,7 +65,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
         </div>
         <div className="flex justify-center text-center w-[100%] lg:py-5">
           <p className="text-[144px] pt-10 font-semibold text-[#E7E7EB]  lg:text-[144px]">
-            {Math.floor(data.main.temp)}
+            {Math.floor(data?.main?.temp || 0)}
           </p>
           <p className="text-[90px] pt-28 text-[#e7e7eb83] lg:text-[80px]">
             °{unidad === "metric" ? "c" : "f"}
@@ -68,7 +73,7 @@ function SearchPlaces({ data, openModal, unidad, pedirDatos }) {
         </div>
         <div className=" pb-[70px] pt-[10px] lg:pb-[70px] lg:pt-[80px] ">
           <p className="text-[#e7e7eb83] text-[36px] text-center  lg:text-[36px]">
-            {data.weather[0].description}
+            {data?.weather?.[0]?.description}
           </p>
         </div>
         <p className="text-[#88869D] pb-5 text-[18px] lg:pb-[30px]">

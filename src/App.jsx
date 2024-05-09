@@ -10,6 +10,8 @@ import { FaLocationArrow } from "react-icons/fa6";
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from "axios";
 import { obtenerClimaSemanal } from "./utils/obtener-clima-semanal";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [data, setData] = useState({});
@@ -27,7 +29,7 @@ function App() {
     setShowModal(false);
   };
 
-  const pedirDatos = async (nombre, lat, lon) => {
+  const requestingData = async (nombre, lat, lon) => {
     try {
       let url = `https://api.openweathermap.org/data/2.5/weather?units=${botonActivo}&appid=${
         import.meta.env.VITE_API_KEY
@@ -37,14 +39,14 @@ function App() {
       if (lat && lon) url += `&lat=${lat}&lon=${lon}`;
 
       const { data } = await axios.get(url);
-      pedirDatosSemana(data.coord.lon, data.coord.lat);
+      requestingDataSemana(data.coord.lon, data.coord.lat);
       setData(data);
     } catch (error) {
-      console.log(error.name);
+      toast.error("no andaaaaaa"); // andaa pero se ve horrible vamos a ver por qué
     }
   };
 
-  const pedirDatosSemana = async (lon, lat) => {
+  const requestingDataSemana = async (lon, lat) => {
     try {
       const respuesta = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${botonActivo}&appid=${
@@ -53,24 +55,25 @@ function App() {
       );
       setWeek(obtenerClimaSemanal(respuesta.data));
     } catch (error) {
+      // falta toastify
+
       console.log(error.name);
     }
   };
 
   useEffect(() => {
-    pedirDatos(dataUbication || "cordoba");
+    requestingData(dataUbication || "cordoba");
   }, [botonActivo]);
 
-  if (Object.keys(data).length === 0 || week.length === 0) return;
   return (
     <div className="font-raleway">
       {showModal && (
         <DropDown
-          pedirdatos={pedirDatos}
+          requestingData={requestingData}
           onClose={closeModal}
           historial={historial}
           setHistorial={setHistorial}
-          dataUbicacion={dataUbication}
+          dataUbication={dataUbication}
           setDataUbication={setDataUbication}
         />
       )}
@@ -80,8 +83,9 @@ function App() {
           data={data}
           openModal={openModal}
           unidad={botonActivo}
-          pedirDatos={pedirDatos}
+          requestingData={requestingData}
         />
+
         <div className="grow bg-secondary">
           <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[820px]">
             <div>
@@ -134,7 +138,7 @@ function App() {
           >
             <TodayHighlightsSection
               title={"Wind status"}
-              value={data.wind.speed}
+              value={data?.wind?.speed ?? ""}
               unit="mph"
             >
               <div className="flex justify-center gap-2">
@@ -147,7 +151,7 @@ function App() {
             </TodayHighlightsSection>
             <TodayHighlightsSection
               title="Humidity"
-              value={data.main.humidity}
+              value={data?.main?.humidity || 0}
               unit="%"
             >
               <div className="px-8">
@@ -155,7 +159,7 @@ function App() {
                   <p>0</p> <p>50</p> <p>100</p>
                 </div>
                 <ProgressBar
-                  completed={data.main.humidity}
+                  completed={data?.main?.humidity || 0}
                   bgColor="#FFEC65"
                   isLabelVisible={false}
                   height="12px"
@@ -167,12 +171,12 @@ function App() {
             </TodayHighlightsSection>
             <TodayHighlightsSection
               title="Visibility"
-              value={data.visibility}
+              value={data?.visibility || 0}
               unit="miles"
             />
             <TodayHighlightsSection
               title="Air pressure"
-              value={data.main.pressure}
+              value={data?.main?.pressure || 0}
               unit="mb"
             />
           </motion.div>
@@ -189,6 +193,8 @@ function App() {
           </h2>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }
