@@ -53,6 +53,11 @@ function App() {
           import.meta.env.VITE_API_KEY
         }`
       );
+
+      if (!history.includes(response.data.city.name)) {
+        sethistory([response.data.city.name, ...history]);
+      }
+
       setWeek(obtenerClimaSemanal(response.data));
     } catch (error) {
       toast.error("An unexpected error has occurred.");
@@ -60,7 +65,7 @@ function App() {
   };
 
   useEffect(() => {
-    requestingData(dataUbication || "cordoba");
+    requestingData(history?.[0]);
   }, [activeButton]);
 
   return (
