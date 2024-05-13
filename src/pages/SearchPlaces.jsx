@@ -7,6 +7,7 @@ import { WeatherIcons } from "../consts/weather-icons";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
+
 function SearchPlaces({ data, openModal, unit, requestingData }) {
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -46,10 +47,10 @@ function SearchPlaces({ data, openModal, unit, requestingData }) {
             <MdMyLocation className="text-[#E7E7EB] bg-[#6E707A] size-10 rounded-full p-1  lg:size-10 lg:p-[5px]" />
           </motion.button>
         </div>
-        <div className="flex justify-center lg:justify-start lg:pl-[80px] items-center pt-12 ">
+        <div className="flex justify-center lg:justify-start lg:pl-[96px] items-center pt-12 ">
           {data?.weather?.[0]?.icon !== undefined && (
             <motion.img
-              className=" w-[180px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
+              className=""
               src={
                 WeatherIcons[data?.weather?.[0]?.icon?.substring(0, 2) || ""]
               }
