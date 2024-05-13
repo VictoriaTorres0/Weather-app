@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { WeatherIcons } from "../consts/weather-icons";
 
-function WeatherCalendar({ title, C1, C2, icon, unidad }) {
+function WeatherCalendar({ title, C1, C2, icon, unit }) {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
@@ -17,10 +17,10 @@ function WeatherCalendar({ title, C1, C2, icon, unidad }) {
       />
       <div className="flex text-center justify-center gap-2 ">
         <p className="text-[#E7E7EB] lg:text-[16px] lg:font-semibold">
-          {Math.floor(C1)}°{unidad === "metric" ? "c" : "f"}
+          {Math.floor(C1)}°{unit === "metric" ? "c" : "f"}
         </p>
         <p className="text-[#A09FB1] lg:text-[16px] lg:font-semibold">
-          {Math.floor(C2)}°{unidad === "metric" ? "c" : "f"}
+          {Math.floor(C2)}°{unit === "metric" ? "c" : "f"}
         </p>
       </div>
     </motion.div>

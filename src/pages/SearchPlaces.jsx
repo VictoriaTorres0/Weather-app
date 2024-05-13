@@ -7,7 +7,7 @@ import { WeatherIcons } from "../consts/weather-icons";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-function SearchPlaces({ data, openModal, unidad, requestingData }) {
+function SearchPlaces({ data, openModal, unit, requestingData }) {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -71,7 +71,7 @@ function SearchPlaces({ data, openModal, unidad, requestingData }) {
             {Math.floor(data?.main?.temp || 0)}
           </p>
           <p className="text-[90px] pt-28 text-[#e7e7eb83] lg:text-[80px]">
-            °{unidad === "metric" ? "c" : "f"}
+            °{unit === "metric" ? "c" : "f"}
           </p>
         </div>
         <div className=" pb-[70px] pt-[10px] lg:pb-[70px] lg:pt-[80px] ">

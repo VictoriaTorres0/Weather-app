@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 export default function DropDown({
   onClose,
   requestingData,
-  historial,
-  setHistorial,
+  history,
+  sethistory,
   dataUbication,
   setDataUbication,
 }) {
@@ -41,7 +41,7 @@ export default function DropDown({
           className="bg-[#3C47E9] text-[#E7E7EB] p-[8px]"
           onClick={async () => {
             await requestingData(dataUbication);
-            setHistorial([...historial, dataUbication]);
+            sethistory([...history, dataUbication]);
             onClose();
           }}
           disabled={dataUbication === ""}
@@ -50,7 +50,7 @@ export default function DropDown({
         </button>
       </div>
       <div className="p-4 space-y-4">
-        {historial.map((elemento, index) => (
+        {history.map((elemento, index) => (
           <button
             key={index}
             className="bg-primary p-3 justify-between text-center flex outline-none border w-[100%] h-[50px] border-[#616475]"

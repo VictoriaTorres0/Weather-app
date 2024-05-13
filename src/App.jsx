@@ -17,9 +17,9 @@ function App() {
   const [data, setData] = useState({});
   const [week, setWeek] = useState([]);
   const [dataUbication, setDataUbication] = useState("");
-  const [botonActivo, setBotonActivo] = useState("metric"); // metric o imperial
+  const [activeButton, setactiveButton] = useState("metric");
   const [showModal, setShowModal] = useState(false);
-  const [historial, setHistorial] = useState(["Córdoba"]);
+  const [history, sethistory] = useState(["Córdoba"]);
 
   const openModal = () => {
     setShowModal(true);
@@ -29,13 +29,13 @@ function App() {
     setShowModal(false);
   };
 
-  const requestingData = async (nombre, lat, lon) => {
+  const requestingData = async (name, lat, lon) => {
     try {
-      let url = `https://api.openweathermap.org/data/2.5/weather?units=${botonActivo}&appid=${
+      let url = `https://api.openweathermap.org/data/2.5/weather?units=${activeButton}&appid=${
         import.meta.env.VITE_API_KEY
       }`;
 
-      if (nombre) url += `&q=${nombre}`;
+      if (name) url += `&q=${name}`;
       if (lat && lon) url += `&lat=${lat}&lon=${lon}`;
 
       const { data } = await axios.get(url);
@@ -48,12 +48,12 @@ function App() {
 
   const requestingDataSemana = async (lon, lat) => {
     try {
-      const respuesta = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${botonActivo}&appid=${
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${activeButton}&appid=${
           import.meta.env.VITE_API_KEY
         }`
       );
-      setWeek(obtenerClimaSemanal(respuesta.data));
+      setWeek(obtenerClimaSemanal(response.data));
     } catch (error) {
       toast.error("An unexpected error has occurred.");
     }
@@ -61,7 +61,7 @@ function App() {
 
   useEffect(() => {
     requestingData(dataUbication || "cordoba");
-  }, [botonActivo]);
+  }, [activeButton]);
 
   return (
     <div className="font-raleway">
@@ -69,8 +69,8 @@ function App() {
         <DropDown
           requestingData={requestingData}
           onClose={closeModal}
-          historial={historial}
-          setHistorial={setHistorial}
+          history={history}
+          sethistory={sethistory}
           dataUbication={dataUbication}
           setDataUbication={setDataUbication}
         />
@@ -80,7 +80,7 @@ function App() {
         <SearchPlaces
           data={data}
           openModal={openModal}
-          unidad={botonActivo}
+          unit={activeButton}
           requestingData={requestingData}
         />
 
@@ -88,9 +88,9 @@ function App() {
           <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[820px]">
             <div>
               <button
-                onClick={() => setBotonActivo("metric")}
+                onClick={() => setactiveButton("metric")}
                 className={`p-4 rounded-full font-bold w-[32px] ms-3 lg:text-[20px] lg:p-[8px] lg:w-[46px] lg:font-bold ${
-                  botonActivo === "metric"
+                  activeButton === "metric"
                     ? "bg-[#E7E7EB] text-[#110E3C]"
                     : "bg-[#585676]"
                 }`}
@@ -100,9 +100,9 @@ function App() {
             </div>
             <div>
               <button
-                onClick={() => setBotonActivo("imperial")}
+                onClick={() => setactiveButton("imperial")}
                 className={`p-4 rounded-full font-bold w-[32px] ms-3 lg:text-[20px] lg:p-[8px] lg:w-[46px] lg:font-bold ${
-                  botonActivo === "imperial"
+                  activeButton === "imperial"
                     ? "bg-[#E7E7EB] text-[#110E3C]"
                     : "bg-[#585676]"
                 }`}
@@ -112,14 +112,14 @@ function App() {
             </div>
           </div>
           <div className="flex flex-wrap justify-center gap-5 py-8">
-            {week.map((datos, key) => (
+            {week.map((data, key) => (
               <WeatherCalendar
                 key={key}
-                title={datos.date}
-                C1={datos.max}
-                C2={datos.min}
-                icon={datos?.icon}
-                unidad={botonActivo}
+                title={data.date}
+                C1={data.max}
+                C2={data.min}
+                icon={data?.icon}
+                unit={activeButton}
               />
             ))}
           </div>
