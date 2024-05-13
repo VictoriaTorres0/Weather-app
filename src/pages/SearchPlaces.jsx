@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { WeatherIcons } from "../consts/weather-icons";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function SearchPlaces({ data, openModal, unidad, requestingData }) {
   const getLocation = () => {
@@ -22,15 +23,13 @@ function SearchPlaces({ data, openModal, unidad, requestingData }) {
         }
       );
     } else {
-      console.log("error");
-      // acá falta toast
+      toast.error("An unexpected error has occurred.");
     }
   };
 
   useEffect(() => {
     getLocation();
   }, []);
-
   return (
     <div className="Container-SearchPlaces relative h-[84vh]  lg:w-[100%] lg:max-w-[459px]">
       <div>
@@ -48,20 +47,24 @@ function SearchPlaces({ data, openModal, unidad, requestingData }) {
           </motion.button>
         </div>
         <div className="flex justify-center lg:justify-start lg:pl-[80px] items-center pt-12 ">
-          <motion.img
-            className=" w-[180px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
-            src={WeatherIcons[data?.weather?.[0]?.icon?.substring(0, 2) || ""]}
-            alt=""
-            animate={{
-              y: [1, 10, 1],
-              transition: {
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "linear",
-              },
-            }}
-          />
+          {data?.weather?.[0]?.icon !== undefined && (
+            <motion.img
+              className=" w-[180px] h-[174px] lg:w-[250px] lg:h-[234px] lg:pb-[20px]"
+              src={
+                WeatherIcons[data?.weather?.[0]?.icon?.substring(0, 2) || ""]
+              }
+              alt=""
+              animate={{
+                y: [1, 10, 1],
+                transition: {
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "linear",
+                },
+              }}
+            />
+          )}
         </div>
         <div className="flex justify-center text-center w-[100%] lg:py-5">
           <p className="text-[144px] pt-10 font-semibold text-[#E7E7EB]  lg:text-[144px]">

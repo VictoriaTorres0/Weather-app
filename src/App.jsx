@@ -42,7 +42,7 @@ function App() {
       requestingDataSemana(data.coord.lon, data.coord.lat);
       setData(data);
     } catch (error) {
-      toast.error("no andaaaaaa"); // andaa pero se ve horrible vamos a ver por qué
+      toast.error("An unexpected error has occurred.");
     }
   };
 
@@ -55,9 +55,7 @@ function App() {
       );
       setWeek(obtenerClimaSemanal(respuesta.data));
     } catch (error) {
-      // falta toastify
-
-      console.log(error.name);
+      toast.error("An unexpected error has occurred.");
     }
   };
 
