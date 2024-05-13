@@ -1,6 +1,7 @@
 import { SlArrowRight } from "react-icons/sl";
 import { RxCross2 } from "react-icons/rx";
 import { motion } from "framer-motion";
+import { IoMdSearch } from "react-icons/io";
 
 export default function DropDown({
   onClose,
@@ -26,28 +27,27 @@ export default function DropDown({
       >
         <RxCross2 />
       </button>
-      <div className="pt-5 flex justify-between p-4 gap-3">
-        <motion.input
-          initial={{ opacity: 0.6 }}
-          whileTap={{ scale: 0.9 }}
+      <div className="pt-5 relative flex justify-between p-4 gap-3">
+        <input
           type="text"
           value={dataUbication}
           onChange={handleChange}
           placeholder="search location"
-          className="bg-primary text-white w-[130%] outline-none text-center border border-[#E7E7EB] p-[7px]"
+          className="bg-primary text-white w-[130%] outline-none pl-[40px] border border-[#E7E7EB] p-[7px]"
         />
-
-        <button
-          className="bg-[#3C47E9] text-[#E7E7EB] p-[8px]"
+        <IoMdSearch className="absolute text-[#616475] text-[30px] left-6 pt-1 top-1/2 -translate-y-1/2" />
+        <motion.button
+          initial={{ opacity: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="bg-[#3C47E9] cursor-pointer text-[#E7E7EB] p-[8px]"
           onClick={async () => {
             await requestingData(dataUbication);
-            sethistory([...history, dataUbication]);
             onClose();
           }}
           disabled={dataUbication === ""}
         >
           Search
-        </button>
+        </motion.button>
       </div>
       <div className="p-4 space-y-4">
         {history.map((elemento, index) => (
