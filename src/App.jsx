@@ -90,7 +90,7 @@ function App() {
         />
 
         <div className="grow bg-secondary">
-          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[820px]">
+          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[900px]">
             <div>
               <button
                 onClick={() => setactiveButton("metric")}
@@ -129,7 +129,7 @@ function App() {
             ))}
           </div>
           <div className="">
-            <h2 className="text-[24px] text-start font-semibold text-[#E7E7EB] pl-3 lg:pl-16 pb-5">
+            <h2 className="pl-4 md:pl-0 text-[24px] text-start font-semibold text-[#E7E7EB] pb-5 max-w-[765px] mx-auto">
               Today’s Hightlights
             </h2>
           </div>

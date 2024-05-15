@@ -5,7 +5,7 @@ function WeatherCalendar({ title, C1, C2, icon, unit }) {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}
-      className="bg-[#1E213A] py-3 my-3  grid justify-items-center items-center w-[130px] h-[177px] lg:text-[16px] lg:w-[122px]"
+      className="bg-[#1E213A] py-3 my-3  grid justify-items-center items-center w-[130px] h-[177px] lg:text-[16px] lg:w-[135px]"
     >
       <h2 className="text-[#E7E7EB] lg:text-[20px] lg:font-semibold">
         {title}
