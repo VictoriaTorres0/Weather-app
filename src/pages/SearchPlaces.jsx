@@ -31,7 +31,7 @@ function SearchPlaces({ data, openModal, unit, requestingData }) {
     getLocation();
   }, []);
   return (
-    <div className="Container-SearchPlaces relative md:h-[85vh] h-[84vh] lg:h-[100vh]   lg:w-[100%] lg:max-w-[459px]">
+    <div className="Container-SearchPlaces relative md:h-[85vh] h-[100vh] lg:h-[100vh]   lg:w-[100%] lg:max-w-[459px]">
       <div>
         <div className="flex justify-between px-3 pt-5 ">
           <motion.button
