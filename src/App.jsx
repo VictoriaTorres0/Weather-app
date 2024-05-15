@@ -90,7 +90,7 @@ function App() {
         />
 
         <div className="grow bg-secondary">
-          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[900px]">
+          <div className="text-white hidden lg:flex lg:justify-end  max-w-[948px] mx-auto mb-5 mt-10 lg:max-w-[850px]">
             <div>
               <button
                 onClick={() => setactiveButton("metric")}
